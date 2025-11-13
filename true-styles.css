@@ -1,0 +1,872 @@
+/* TRUE电商平台 - 灰蓝情绪公式设计系统 */
+
+/* ===================================
+   色彩系统规范（60-30-10灰蓝科学配比）
+   =================================== */
+
+/* 60% 主色 - 雾霭蓝 #E6EEF5 - 专业冷静基底 */
+ :root {
+ --true-primary: #e6eef5d2;
+ --true-primary-light: #F0F6FB;
+ --true-primary-dark: #D8E4ED;
+
+/* 30% 辅色 - 中灰蓝 #8AA9C1 - 建立秩序感 */
+ --true-secondary: #8AA9C1;
+ --true-secondary-light: #A8C1D6;
+ --true-secondary-dark: #6C8CA8;
+
+/* 10% 点睛色 - 珊瑚红 #FF6B6B - 冷暖对抗触发行动 */
+ --true-accent: #FF6B6B;
+ --true-accent-light: #FF8E8E;
+ --true-accent-dark: #E55A5A;
+
+/* 文字色 - 深灰蓝 #2D3748 - 避免纯黑压迫感 */
+ --true-text-primary: #2D3748;
+ --true-text-secondary: #4A5568;
+ --true-text-muted: #718096;
+
+/* 中性色 - 支持色彩层级 */
+ --true-white: #FFFFFF;
+ --true-gray-50: #F7FAFC;
+ --true-gray-100: #EDF2F7;
+ --true-gray-200: #E2E8F0;
+ --true-gray-300: #CBD5E0;
+
+/* ===================================
+   平面构成理论 - 负空间节奏系统
+   =================================== */
+
+/* 黄金分割比例常量 */
+ --phi: 1.618; /* 黄金分割比例 */
+ --spacing-xs: calc(0.25rem * var(--phi)); /* 0.405rem */
+ --spacing-sm: calc(0.5rem * var(--phi));  /* 0.809rem */
+ --spacing-md: calc(1rem * var(--phi));    /* 1.618rem */
+ --spacing-lg: calc(1.5rem * var(--phi));  /* 2.427rem */
+ --spacing-xl: calc(2rem * var(--phi));    /* 3.236rem */
+
+/* 负空间呼吸感 - 屏占比优化 */
+ --breathing-space: 15%; /* 释放15%屏占比给核心商品 */
+ --card-spacing: calc(var(--spacing-md) * var(--phi)); /* 1.618倍卡片间距 */
+ }
+
+/* 全局样式重置 - 专业感基底 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; /* 基准字号 */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    line-height: 1.618; /* 黄金分割行高 */
+    color: var(--true-text-primary);
+    background-color: var(--true-primary);
+    background-image: 
+        linear-gradient(135deg, var(--true-primary-light) 0%, var(--true-primary) 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===================================
+   导航栏 - 专业感×呼吸感
+   =================================== */
+
+.true-navbar {
+    background: linear-gradient(135deg, var(--true-primary-light) 0%, var(--true-primary) 100%);
+    padding: calc(var(--spacing-sm) * 0.8) 0; /* 压缩20%高度释放空间 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 12px rgba(138, 169, 193, 0.15);
+    border-bottom: 1px solid var(--true-gray-200);
+}
+
+.true-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-lg);
+    height: 60px; /* 压缩导航高度 */
+}
+
+.true-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.true-logo h2 {
+    color: var(--true-text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: -2px;
+}
+
+.logo-subtitle {
+    font-size: 0.75rem;
+    color: var(--true-secondary);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.true-search {
+    display: flex;
+    align-items: center;
+    background: var(--true-white);
+    border-radius: calc(var(--spacing-xs) * 2);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    width: 400px;
+    max-width: 40%;
+    box-shadow: 0 2px 8px rgba(138, 169, 193, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.true-search:focus-within {
+    box-shadow: 0 4px 16px rgba(138, 169, 193, 0.2);
+    transform: translateY(-1px);
+}
+
+.true-search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: var(--spacing-xs);
+    font-size: 0.95rem;
+    color: var(--true-text-primary);
+    background: transparent;
+}
+
+.true-search-input::placeholder {
+    color: var(--true-text-muted);
+}
+
+.true-search-btn {
+    background: var(--true-secondary);
+    color: var(--true-white);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: calc(var(--spacing-xs) * 1.5);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+}
+
+.true-search-btn:hover {
+    background: var(--true-accent);
+    transform: scale(1.05);
+}
+
+.true-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.true-cart-icon, .true-user-icon {
+    position: relative;
+    color: var(--true-secondary);
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: var(--spacing-xs);
+    border-radius: 50%;
+}
+
+.true-cart-icon:hover, .true-user-icon:hover {
+    color: var(--true-accent);
+    background: rgba(255, 107, 107, 0.1);
+    transform: scale(1.1);
+}
+
+.true-cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: var(--true-accent);
+    color: var(--true-white);
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(255, 107, 107, 0.3);
+}
+
+/* ===================================
+   分类导航 - 线构成节奏
+   =================================== */
+
+.true-category-nav {
+    background: var(--true-white);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--true-gray-200);
+    position: relative;
+}
+
+.true-category-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--true-secondary) 50%, transparent 100%);
+}
+
+.true-category-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--spacing-md) * 0.618); /* 黄金分割间距 */
+    padding: 0 var(--spacing-lg);
+}
+
+.true-category-item {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: calc(var(--spacing-xs) * 2);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    color: var(--true-text-secondary);
+    position: relative;
+    overflow: hidden;
+}
+
+.true-category-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(138, 169, 193, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.true-category-item:hover::before {
+    left: 100%;
+}
+
+.true-category-item:hover {
+    color: var(--true-accent);
+    background: rgba(255, 107, 107, 0.05);
+}
+
+.true-category-item.active {
+    background: var(--true-secondary);
+    color: var(--true-white);
+    box-shadow: 0 4px 12px rgba(138, 169, 193, 0.3);
+}
+
+/* ===================================
+   主要内容区域 - 负空间呼吸感
+   =================================== */
+
+.true-main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    position: relative;
+}
+
+/* 顶部留白区 - 释放15%屏占比 */
+.true-main-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--breathing-space);
+    background: linear-gradient(180deg, var(--true-primary-light) 0%, transparent 100%);
+    z-index: -1;
+}
+
+/* ===================================
+   轮播区域 - 专业感视觉焦点
+   =================================== */
+
+.true-hero-section {
+    margin-bottom: calc(var(--spacing-xl) * 1.5);
+    position: relative;
+}
+
+.true-hero-slider {
+    position: relative;
+    border-radius: calc(var(--spacing-xs) * 3);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(138, 169, 193, 0.15);
+    height: 320px; /* 压缩高度释放空间 */
+}
+
+.true-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(135deg, var(--true-primary) 0%, var(--true-secondary) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(138, 169, 193, 0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    background-size: cover, 20px 20px;
+}
+
+.true-hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--true-white);
+    z-index: 2;
+}
+
+.true-hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 8px rgba(45, 55, 72, 0.3);
+}
+
+.true-hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.true-hero-btn {
+    background: var(--true-accent);
+    color: var(--true-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: calc(var(--spacing-xs) * 2);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.true-hero-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.true-hero-btn:hover::before {
+    left: 100%;
+}
+
+.true-hero-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+}
+
+/* ===================================
+   商品展示区域 - 呼吸感网格系统
+   =================================== */
+
+.true-products-section {
+    background: var(--true-white);
+    border-radius: calc(var(--spacing-xs) * 3);
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 24px rgba(138, 169, 193, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.true-products-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--true-secondary) 0%, var(--true-accent) 50%, var(--true-secondary) 100%);
+}
+
+.true-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--true-gray-200);
+}
+
+.true-section-title {
+    color: var(--true-text-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    position: relative;
+}
+
+.true-section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--true-accent);
+    border-radius: 2px;
+}
+
+.true-view-options {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.true-view-btn {
+    background: var(--true-gray-50);
+    border: 1px solid var(--true-gray-200);
+    padding: var(--spacing-sm);
+    border-radius: calc(var(--spacing-xs) * 1.5);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--true-text-secondary);
+    font-size: 0.9rem;
+}
+
+.true-view-btn.active, .true-view-btn:hover {
+    background: var(--true-secondary);
+    color: var(--true-white);
+    border-color: var(--true-secondary);
+    transform: translateY(-1px);
+}
+
+/* ===================================
+   商品网格 - 黄金分割节奏系统
+   =================================== */
+
+.true-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--card-spacing); /* 1.618倍间距 */
+    position: relative;
+}
+
+/* 节奏破局：每第3张卡片宽度+8% */
+.true-products-grid .product-card:nth-child(3n) {
+    grid-column: span 1;
+    transform: scale(1.08);
+    z-index: 2;
+}
+
+/* 商品卡片 - 面构成主导+点线点缀 */
+.product-card {
+    background: var(--true-white);
+    border-radius: calc(var(--spacing-xs) * 2);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(138, 169, 193, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--true-gray-200);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(138, 169, 193, 0.25);
+    border-color: var(--true-secondary);
+}
+
+/* 按钮右偏移15% - 视觉牵引 */
+/* 按钮右偏移优化：保持布局稳定并右对齐 */
+/* 通过缩小宽度并使用 margin-left: auto 实现右偏移效果 */
+
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: var(--spacing-md);
+}
+
+.product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--true-text-primary);
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+/* 滚动触发：标题文字渐变效果 */
+.product-card:hover .product-title {
+    color: var(--true-secondary);
+}
+
+.product-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--true-accent); /* 珊瑚红价格强调 */
+    position: relative;
+}
+
+.original-price {
+    font-size: 0.85rem;
+    color: var(--true-text-muted);
+    text-decoration: line-through;
+    margin-left: var(--spacing-xs);
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.stars {
+    color: var(--true-accent); /* 珊瑚红星级 */
+}
+
+.rating-text {
+    font-size: 0.8rem;
+    color: var(--true-text-muted);
+}
+
+.add-to-cart {
+    width: 85%;
+    margin-left: auto; /* 右对齐（等效右偏移15%）*/
+    background: var(--true-secondary);
+    color: var(--true-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: calc(var(--spacing-xs) * 2);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.add-to-cart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.add-to-cart:hover::before {
+    left: 100%;
+}
+
+.add-to-cart:hover {
+    background: var(--true-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
+}
+
+/* ===================================
+   动态构成彩蛋（按钮呼吸光晕）
+   =================================== */
+
+@keyframes breatheGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.4);
+    }
+}
+
+.add-to-cart {
+    animation: breatheGlow 3s ease-in-out infinite;
+    animation-delay: 3s; /* 闲置3秒后触发 */
+}
+
+.add-to-cart:hover {
+    animation: none; /* 悬停时停止呼吸 */
+}
+
+/* ===================================
+   购物车侧边栏 - 专业感延续
+   =================================== */
+
+.true-cart-sidebar {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 380px;
+    height: 100vh;
+    background: var(--true-white);
+    box-shadow: -8px 0 24px rgba(138, 169, 193, 0.15);
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--true-gray-200);
+}
+
+.true-cart-sidebar.open {
+    right: 0;
+}
+
+.true-cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--true-gray-200);
+    background: var(--true-gray-50);
+}
+
+.true-cart-title {
+    margin: 0;
+    color: var(--true-text-primary);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.true-close-cart {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--true-text-muted);
+    transition: all 0.3s ease;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.true-close-cart:hover {
+    color: var(--true-accent);
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.true-cart-items {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow-y: auto;
+}
+
+.true-cart-footer {
+    padding: var(--spacing-lg);
+    border-top: 1px solid var(--true-gray-200);
+    background: var(--true-gray-50);
+}
+
+.true-cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.true-total-label {
+    color: var(--true-text-secondary);
+}
+
+.true-total-price {
+    color: var(--true-accent);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.true-checkout-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--true-accent) 0%, var(--true-accent-dark) 100%);
+    color: var(--true-white);
+    border: none;
+    padding: var(--spacing-md);
+    border-radius: calc(var(--spacing-xs) * 2);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.true-checkout-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.true-checkout-btn:hover::before {
+    left: 100%;
+}
+
+.true-checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+}
+
+/* ===================================
+   专业感遮罩层
+   =================================== */
+
+.true-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(45, 55, 72, 0.5);
+    z-index: 1500;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+}
+
+.true-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===================================
+   响应式设计 - 呼吸感延续
+   =================================== */
+
+@media (max-width: 768px) {
+    .true-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        height: auto;
+        padding: var(--spacing-md);
+    }
+    
+    .true-search {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .true-category-container {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+        justify-content: center;
+    }
+    
+    .true-main-content {
+        padding: var(--spacing-md);
+    }
+    
+    .true-hero-title {
+        font-size: 2rem;
+    }
+    
+    .true-products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .true-cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+    
+    /* 移动端节奏调整 */
+    .true-products-grid .product-card:nth-child(3n) {
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 480px) {
+    .true-products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .true-hero-slider {
+        height: 280px;
+    }
+    
+    .true-hero-title {
+        font-size: 1.5rem;
+    }
+    
+    .true-section-title {
+        font-size: 1.5rem;
+    }
+    
+    /* 移动端按钮右对齐，避免溢出 */
+    .add-to-cart {
+        width: 90%;
+        margin-left: auto;
+    }
+}
+
+/* ===================================
+   滚动渐变效果（动态构成彩蛋）
+   =================================== */
+
+@keyframes scrollGradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.true-products-section {
+    background: 
+        linear-gradient(135deg, var(--true-white) 0%, var(--true-gray-50) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="subtle-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(138, 169, 193, 0.05)"/></pattern></defs><rect width="60" height="60" fill="url(%23subtle-grid)"/></svg>');
+    background-size: 100% 100%, 60px 60px;
+    animation: scrollGradient 20s linear infinite;
+}
+
+/* 文字渐变效果 */
+.true-section-title {
+    background: linear-gradient(135deg, var(--true-text-primary) 0%, var(--true-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
