@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRUE商城 - 专业感×呼吸感的购物体验</title>
+    <link rel="stylesheet" href="true-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="description" content="TRUE电商平台 - 灰蓝色调的专业感设计，3秒内抓住您的注意力">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar true-navbar">
+        <div class="nav-container true-container">
+            <div class="nav-logo true-logo">
+                <h2>TRUE</h2>
+                <span class="logo-subtitle">专业感×呼吸感</span>
+            </div>
+            <div class="nav-search true-search">
+                <input type="text" placeholder="搜索专业品质商品..." id="searchInput" class="true-search-input">
+                <button class="search-btn true-search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-actions true-actions">
+                <div class="cart-icon true-cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count true-cart-count" id="cartCount">0</span>
+                </div>
+                <div class="user-icon true-user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 分类导航 -->
+    <div class="category-nav true-category-nav">
+        <div class="category-container true-category-container">
+            <div class="category-item true-category-item active" data-category="all">全部商品</div>
+            <div class="category-item true-category-item" data-category="electronics">数码电子</div>
+            <div class="category-item true-category-item" data-category="clothing">服装配饰</div>
+            <div class="category-item true-category-item" data-category="home">家居用品</div>
+            <div class="category-item true-category-item" data-category="books">图书文具</div>
+            <div class="category-item true-category-item" data-category="sports">运动户外</div>
+        </div>
+    </div>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content true-main-content">
+        <!-- 专业感轮播区域 -->
+        <section class="hero-section true-hero-section">
+            <div class="hero-slider true-hero-slider">
+                <div class="hero-slide true-hero-slide active">
+                    <div class="hero-bg true-hero-bg"></div>
+                    <div class="hero-content true-hero-content">
+                        <h1 class="true-hero-title">专业品质 值得信赖</h1>
+                        <p class="true-hero-subtitle">灰蓝色调营造的专业购物体验</p>
+                        <button class="hero-btn true-hero-btn">探索专业精选</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 呼吸感商品展示区域 -->
+        <section class="products-section true-products-section">
+            <div class="section-header true-section-header">
+                <h2 class="true-section-title">专业精选商品</h2>
+                <div class="view-options true-view-options">
+                    <button class="view-btn true-view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                    <button class="view-btn true-view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                </div>
+            </div>
+            <div class="products-grid true-products-grid" id="productsGrid">
+                <!-- 商品将通过JavaScript动态加载 -->
+            </div>
+        </section>
+    </main>
+
+    <!-- 专业感购物车侧边栏 -->
+    <div class="cart-sidebar true-cart-sidebar" id="cartSidebar">
+        <div class="cart-header true-cart-header">
+            <h3 class="true-cart-title">专业购物车</h3>
+            <button class="close-cart true-close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items true-cart-items" id="cartItems">
+            <!-- 购物车商品将动态加载 -->
+        </div>
+        <div class="cart-footer true-cart-footer">
+            <div class="cart-total true-cart-total">
+                <span class="true-total-label">专业总价:</span>
+                <span class="true-total-price" id="cartTotal">¥0.00</span>
+            </div>
+            <button class="checkout-btn true-checkout-btn">专业结算</button>
+        </div>
+    </div>
+
+    <!-- 专业感遮罩层 -->
+    <div class="overlay true-overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
