@@ -1,0 +1,9 @@
+{
+  "name": "xiyu-mall",
+  "version": "1.0.0",
+  "description": "模块化电商前端项目",
+  "main": "src/main.js",
+  "scripts": {},
+  "author": "yoruyyds",
+  "license": "MIT"
+}
